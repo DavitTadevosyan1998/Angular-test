@@ -1,0 +1,49 @@
+html {
+  font-size: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+:focus {
+  outline: none;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea,
+select {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+input,
+textarea {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+img, iframe {
+  max-width: 100%;
+}
+
+img, textarea {
+  vertical-align: top;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+

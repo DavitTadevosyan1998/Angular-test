@@ -1,0 +1,117 @@
+<div class="register">
+  <div class="register__content">
+    <h1>{{'Sign up' | titlecase}}</h1>
+
+    <p
+      *ngIf="successMsg"
+      class="message__success">
+      You successfully signed up
+    </p>
+    <p
+      *ngIf="errMsg"
+      class="message__error">
+      {{errMsg}}
+    </p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label
+          class="form-group__label"
+          [class.error]="f['username'].touched && f['username'].invalid">
+          <input
+            #username
+            type="text"
+            class="form-group__input"
+            [class.active]="username.value"
+            placeholder="User name"
+            formControlName="username"
+            (blur)="username.placeholder = 'User name'"
+            (focus)="username.placeholder = ''"
+            autocomplete="off">
+          <span class="form-group__active-text">User name</span>
+        </label>
+        <span
+          class="form-group__error"
+          *ngIf="f['username'].touched && f['username'].invalid">
+          User name is required
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label
+          class="form-group__label"
+          [class.error]="f['password'].touched && f['password'].invalid">
+          <input
+            #password
+            type="password"
+            class="form-group__input"
+            [class.active]="password.value"
+            placeholder="Password"
+            formControlName="password"
+            (blur)="password.placeholder = 'Password'"
+            (focus)="password.placeholder = ''"
+            autocomplete="off">
+          <span class="form-group__active-text">Password</span>
+        </label>
+
+        <span
+          class="form-group__error"
+          *ngIf="f['password'].touched && f['password'].errors && f['password'].errors['required']">
+          Password is required
+        </span>
+
+        <span
+          class="form-group__error"
+          *ngIf="f['password'].touched && f['password'].errors && f['password'].errors['minlength']">
+          The password must contain 8 character
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label
+          class="form-group__label"
+          [class.error]="f['confirm_password'].touched && f['confirm_password'].invalid">
+          <input
+            #confirmPass
+            type="password"
+            class="form-group__input"
+            [class.active]="confirmPass.value"
+            placeholder="Confirm password"
+            formControlName="confirm_password"
+            (blur)="confirmPass.placeholder = 'Confirm password'"
+            (focus)="confirmPass.placeholder = ''"
+            autocomplete="off">
+          <span class="form-group__active-text">Confirm Password</span>
+        </label>
+
+        <span
+          class="form-group__error"
+          *ngIf="f['confirm_password'].touched && f['confirm_password'].errors
+          && (f['confirm_password'].errors['required'] || f['confirm_password'].errors['onlyWhitespacesValidator'])">
+          Password confirmation is required
+        </span>
+
+        <span
+          class="form-group__error"
+          *ngIf="f['confirm_password'].touched && f['confirm_password'].errors
+          && f['confirm_password'].errors['mustMatch']">
+          confirmation password doesn't matches with password
+        </span>
+      </div>
+
+      <div class="btn-block">
+        <button
+          type="submit"
+          class="btn-main"
+          [class.disabled]="registerForm.invalid"
+          [disabled]="registerForm.invalid">
+          {{'sign up' | titlecase}}
+        </button>
+        <span>Or</span>
+        <button type="button" class="btn-main" [routerLink]="['/login']">
+          {{'sign in' | titlecase}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

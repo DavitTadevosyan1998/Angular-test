@@ -1,0 +1,17 @@
+.register {
+  width: 100vw;
+
+  &__content {
+    width: 50%;
+    margin: 0 auto;
+    padding: 64px;
+
+    @media(max-width: 766px) {
+      width: 100%;
+    }
+
+    form {
+      margin-top: 32px;
+    }
+  }
+}

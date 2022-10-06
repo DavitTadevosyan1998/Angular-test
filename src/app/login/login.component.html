@@ -1,0 +1,79 @@
+<div class="login">
+  <div class="login__content">
+    <h1>{{'Sign up' | titlecase}}</h1>
+
+    <p
+      *ngIf="successMsg"
+      class="message__success">
+      You successfully signed in
+    </p>
+    <p
+      *ngIf="errMsg"
+      class="message__error">
+      {{errMsg}}
+    </p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label
+          class="form-group__label"
+          [class.error]="f['username'].touched && f['username'].invalid">
+          <input
+            #username
+            type="text"
+            class="form-group__input"
+            [class.active]="username.value"
+            placeholder="User name"
+            formControlName="username"
+            (blur)="username.placeholder = 'User name'"
+            (focus)="username.placeholder = ''"
+            autocomplete="off">
+          <span class="form-group__active-text">User name</span>
+        </label>
+        <span
+          class="form-group__error"
+          *ngIf="f['username'].touched && f['username'].invalid">
+          User name is required
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label
+          class="form-group__label"
+          [class.error]="f['password'].touched && f['password'].invalid">
+          <input
+            #password
+            type="password"
+            class="form-group__input"
+            [class.active]="password.value"
+            placeholder="Password"
+            formControlName="password"
+            (blur)="password.placeholder = 'Password'"
+            (focus)="password.placeholder = ''"
+            autocomplete="off">
+          <span class="form-group__active-text">Password</span>
+        </label>
+
+        <span
+          class="form-group__error"
+          *ngIf="f['password'].touched && f['password'].errors && f['password'].errors['required']">
+          Password is required
+        </span>
+      </div>
+
+      <div class="btn-block">
+        <button
+          type="submit"
+          class="btn-main"
+          [class.disabled]="loginForm.invalid"
+          [disabled]="loginForm.invalid">
+          {{'sign in' | titlecase}}
+        </button>
+        <span>Or</span>
+        <button type="button" class="btn-main" [routerLink]="['/register']">
+          {{'sign up' | titlecase}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
